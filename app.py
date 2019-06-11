@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from sklearn.externals import joblib
 import os
+from datetime import datetime
 
 app = Flask(__name__, static_url_path='/static/')
 
@@ -14,24 +15,26 @@ def form():
 def predict_flight_delay():
     
     # get the parameters
-    bedrooms = float(request.form['bedrooms'])
-    bathrooms = float(request.form['bathrooms'])
-    sqft_living15 = float(request.form['sqft_living15'])
-    grade = float(request.form['grade'])
-    condition = float(request.form['condition'])
+    origin_airport = str(request.form['origin_airport'])
+    dest_airport = str(request.form['dest_airport'])
+    distance = float(request.form['distance'])
+    sched_arr = float(request.form['distance'])
+    sched_dep = float(request.form['distance'])
+    date = datetime(request.form['date'])
 
     # load the model and predict
-    model = joblib.load('model/linear_regression.pkl')
-    prediction = model.predict([[bedrooms, bathrooms, sqft_living15, grade, condition]])
-    predicted_price = prediction.round(1)[0]
+    model = joblib.load('model/regression.pkl')
+    prediction = model.predict([[origin_airport, dest_airport, distance, sched_arr, sched_dep, date]])
+    predicted_delay = prediction.round(1)[0]
 
     return render_template('results.html',
-                           bedrooms=int(bedrooms),
-                           bathrooms=int(bathrooms),
-                           sqft_living15=int(sqft_living15),
-                           grade=int(grade),
-                           condition=int(condition),
-                           predicted_price="{:,}".format(predicted_price)
+                           origin_airport= str(origin_airport),
+                           dest_airport= str(dest_airport),
+                           distance= float(distance),
+                           sched_arr= float(sched_arr),
+                           sched_dep= float(sched_dep),
+                           date = datetime(date),
+                           predicted_delay="{:,}".format(predicted_delay)
                            )
 
 
