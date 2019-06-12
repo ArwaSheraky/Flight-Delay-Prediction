@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Standard Meta -->
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, 'chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- Site Properties -->
-    <title>Fixed Menu Example - Semantic</title>
-
+    <title>Flight Delay Prediction</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/components/reset.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/components/site.css') }}">
 
@@ -28,116 +25,146 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/semantic.min.css') }}">
 
-    <script src="{{ url_for('static', filename='dist/components/form.js') }}"></script>
-    <script src="{{ url_for('static', filename='dist/components/transition.js') }}"></script>
-
     <style type="text/css">
         body {
-        background-color: #FFFFFF;
+            background: url('../static//aircraft-airline-airplane-175656.jpg') center no-repeat fixed;
+            background-size: cover;
         }
-        .ui.menu .item img.logo {
-        margin-right: 1.5em;
-        }
-        .main.container {
-        margin-top: 7em;
-        }
-        .wireframe {
-        margin-top: 2em;
-        }
+
         .ui.footer.segment {
-        margin: 5em 0em 0em;
-        padding: 1em 0em;
-        bottom: 0;
-        position: fixed;
-        width: 100%;
+            margin: 5em 0em 0em;
+            padding: 1em 0em;
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+        }
+
+        .main_box {
+            background: rgba(0, 0,0, 0.5);
+            margin: 100px auto;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        .button{
+            float: right;
+            width: 20%;
+            margin-bottom: 30px
         }
     </style>
 
 </head>
+
 <body>
-
-<div class="ui fixed inverted menu">
-    <div class="ui container">
-        <a href="/" class="header item">
-            <!--<img class="logo" src="assets/images/logo.png">-->
-            House Pricing Prediction
-        </a>
-        <a href="/" class="item">Home</a>
-    </div>
-</div>
-
-<div class="ui main text container">
-
-    <h1 class="ui header">One-Click House Pricing Prediction</h1>
-
-    <form class="ui form" action="/predict_price" method="post">
-        <div class="field">
-            <label>Bedrooms</label>
-            <select class="ui selection dropdown" name="bedrooms">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <div class="field">
-            <label>Bathrooms</label>
-            <select class="ui selection dropdown" name="bathrooms">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div class="field">
-            <label>Square foot</label>
-            <input type="text" name="sqft_living15">
-        </div>
-        <div class="field">
-            <label>Grade</label>
-            <select class="ui selection dropdown" name="grade">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-            </select>
-        </div>
-        <div class="field">
-            <label>Conditions</label>
-            <select class="ui selection dropdown" name="condition">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <button class="ui button" type="submit">Submit</button>
-    </form>
-
-</div>
-
-<div class="ui inverted vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui horizontal inverted small divided link list">
-            <a class="item" href="#">CEDB 1260 - BIG DATA ANALYTICS</a>
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <a href="#" class="header item"">
+                Flight Delay Prediction
+            </a>
         </div>
     </div>
-</div>
+
+    <div class="main_box">
+        <center>
+            <h1 class="ui header" style="color: white">Predict The Expected Delay of your Flight!</h1>
+        </center>
+
+        <form class="ui form" action="/predict_price" method="post">
+
+            <div class="field">
+                <label style="color: white">Date</label>
+                <input type="date" name="date" value="2015-01-01" min="2015-01-01" max="2015-12-31" required>
+            </div>
+
+            <div class="field">
+                <label style="color: white">Scheduled Departure</label>
+                <input type="time" name="sched_dep" min="00:00" max="23:59" required>
+            </div>
+
+            <div class="field">
+                <label style="color: white">Scheduled Arrival</label>
+                <input type="time" name="sched_arr" min="00:00" max="23:59" required>
+            </div>
+
+            <div class="field">
+                <label style="color: white">Origin Airport</label>
+                <select class="ui selection dropdown" id="origin_airport" name="origin_airport" required>
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label style="color: white">Destination Airport</label>
+                <select class="ui selection dropdown" id="dest_airport" name="dest_airport" required>
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label style="color: white">Airline</label>
+                <select class="ui selection dropdown" id="airline" name="airline" required>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="field">
+                <label style="color: white">Distance</label>
+                <input type="text" name="distance" pattern="[0-9]*" required>
+            </div>
+
+            <button class="ui button" type="submit">PREDICT</button>
+        </form>
+    </div>
+
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="#">CEDB 1260 - FINAL PROJECT</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="{{ url_for('static', filename='dist/components/form.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/components/transition.js') }}"></script>
+
+    <script type="text/javascript" charset="utf-8">
+
+        Airports = ['ABE', 'ABI', 'ABQ', 'ABR', 'ABY', 'ACK', 'ACT', 'ACV', 'ACY', 'ADK', 'ADQ', 'AEX', 'AGS', 'AKN', 'ALB', 'ALO',
+            'AMA', 'ANC', 'APN', 'ASE', 'ATL', 'ATW', 'AUS', 'AVL', 'AVP', 'AZO', 'BDL', 'BET', 'BFL', 'BGM', 'BGR', 'BHM', 'BIL', 'BIS',
+            'BJI', 'BLI', 'BMI', 'BNA', 'BOI', 'BOS', 'BPT', 'BQK', 'BQN', 'BRD', 'BRO', 'BRW', 'BTM', 'BTR', 'BTV', 'BUF', 'BUR', 'BWI',
+            'BZN', 'CAE', 'CAK', 'CDC', 'CDV', 'CEC', 'CHA', 'CHO', 'CHS', 'CID', 'CIU', 'CLD', 'CLE', 'CLL', 'CLT', 'CMH', 'CMI', 'CMX',
+            'CNY', 'COD', 'COS', 'COU', 'CPR', 'CRP', 'CRW', 'CSG', 'CVG', 'CWA', 'DAB', 'DAL', 'DAY', 'DBQ', 'DCA', 'DEN', 'DFW', 'DHN',
+            'DIK', 'DLG', 'DLH', 'DRO', 'DSM', 'DTW', 'DVL', 'EAU', 'ECP', 'EGE', 'EKO', 'ELM', 'ELP', 'ERI', 'ESC', 'EUG', 'EVV', 'EWN',
+            'EWR', 'EYW', 'FAI', 'FAR', 'FAT', 'FAY', 'FCA', 'FLG', 'FLL', 'FNT', 'FSD', 'FSM', 'FWA', 'GCC', 'GCK', 'GEG', 'GFK', 'GGG',
+            'GJT', 'GNV', 'GPT', 'GRB', 'GRI', 'GRK', 'GRR', 'GSO', 'GSP', 'GST', 'GTF', 'GTR', 'GUC', 'GUM', 'HDN', 'HIB', 'HLN', 'HNL',
+            'HOB', 'HOU', 'HPN', 'HRL', 'HSV', 'HYA', 'HYS', 'IAD', 'IAG', 'IAH', 'ICT', 'IDA', 'ILG', 'ILM', 'IMT', 'IND', 'INL', 'ISN',
+            'ISP', 'ITH', 'ITO', 'JAC', 'JAN', 'JAX', 'JFK', 'JLN', 'JMS', 'JNU', 'KOA', 'KTN', 'LAN', 'LAR', 'LAS', 'LAW', 'LAX', 'LBB',
+            'LBE', 'LCH', 'LEX', 'LFT', 'LGA', 'LGB', 'LIH', 'LIT', 'LNK', 'LRD', 'LSE', 'LWS', 'MAF', 'MBS', 'MCI', 'MCO', 'MDT', 'MDW',
+            'MEI', 'MEM', 'MFE', 'MFR', 'MGM', 'MHK', 'MHT', 'MIA', 'MKE', 'MKG', 'MLB', 'MLI', 'MLU', 'MMH', 'MOB', 'MOT', 'MQT', 'MRY',
+            'MSN', 'MSO', 'MSP', 'MSY', 'MTJ', 'MVY', 'MYR', 'OAJ', 'OAK', 'OGG', 'OKC', 'OMA', 'OME', 'ONT', 'ORD', 'ORF', 'ORH', 'OTH',
+            'OTZ', 'PAH', 'PBG', 'PBI', 'PDX', 'PHF', 'PHL', 'PHX', 'PIA', 'PIB', 'PIH', 'PIT', 'PLN', 'PNS', 'PPG', 'PSC', 'PSE', 'PSG',
+            'PSP', 'PUB', 'PVD', 'PWM', 'RAP', 'RDD', 'RDM', 'RDU', 'RHI', 'RIC', 'RKS', 'RNO', 'ROA', 'ROC', 'ROW', 'RST', 'RSW', 'SAF',
+            'SAN', 'SAT', 'SAV', 'SBA', 'SBN', 'SBP', 'SCC', 'SCE', 'SDF', 'SEA', 'SFO', 'SGF', 'SGU', 'SHV', 'SIT', 'SJC', 'SJT', 'SJU',
+            'SLC', 'SMF', 'SMX', 'SNA', 'SPI', 'SPS', 'SRQ', 'STC', 'STL', 'STT', 'STX', 'SUN', 'SUX', 'SWF', 'SYR', 'TLH', 'TOL', 'TPA',
+            'TRI', 'TTN', 'TUL', 'TUS', 'TVC', 'TWF', 'TXK', 'TYR', 'TYS', 'UST', 'VEL', 'VLD', 'VPS', 'WRG', 'WYS', 'XNA', 'YAK', 'YU']
+
+        for (a = 0; a < Airports.length; a++) {
+
+            var origin_airport_select = $('#origin_airport');
+            var dest_airport_select = $('#dest_airport');
+
+            origin_airport_select.append('<option value=' + Airports[a] + '>' + Airports[a] + '</option>');
+            dest_airport_select.append('<option value=' + Airports[a] + '>' + Airports[a] + '</option>');
+        }
+
+        Airlines = ['UA', 'AA', 'US', 'F9', 'B6', 'OO', 'AS', 'NK', 'WN', 'DL', 'EV', 'HA', 'MQ', 'VX']
+
+        for (i = 0; i < Airlines.length; i++) {
+            var airline_select = $('#airline');
+            airline_select.append('<option value=' + Airlines[i] + '>' + Airlines[i] + '</option>');
+        }
+    </script>
 </body>
 
 </html>
