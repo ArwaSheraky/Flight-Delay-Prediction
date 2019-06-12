@@ -17,19 +17,21 @@ def predict_flight_delay():
     # get the parameters
     origin_airport = str(request.form['origin_airport'])
     dest_airport = str(request.form['dest_airport'])
+    airline = str(request.form['airline'])
     distance = float(request.form['distance'])
-    sched_arr = float(request.form['distance'])
-    sched_dep = float(request.form['distance'])
+    sched_arr = float(request.form['sched_arr'])
+    sched_dep = float(request.form['sched_dep'])
     date = datetime(request.form['date'])
 
     # load the model and predict
-    model = joblib.load('model/regression.pkl')
-    prediction = model.predict([[origin_airport, dest_airport, distance, sched_arr, sched_dep, date]])
+    model = joblib.load('gb_model.pkl')
+    prediction = model.predict([[origin_airport, dest_airport, distance, sched_arr, sched_dep, date, airline]])
     predicted_delay = prediction.round(1)[0]
 
     return render_template('results.html',
                            origin_airport= str(origin_airport),
                            dest_airport= str(dest_airport),
+                           airline = str(airline),
                            distance= float(distance),
                            sched_arr= float(sched_arr),
                            sched_dep= float(sched_dep),
