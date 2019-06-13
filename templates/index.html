@@ -90,29 +90,30 @@
             <div class="field">
                 <label style="color: white">Origin Airport</label>
                 <select class="ui selection dropdown" id="origin_airport" name="origin_airport" required>
-                    <option value=""></option>
+                    <option value="">Choose Airport Code</option>
                 </select>
             </div>
 
             <div class="field">
                 <label style="color: white">Destination Airport</label>
                 <select class="ui selection dropdown" id="dest_airport" name="dest_airport" required>
-                    <option value=""></option>
+                    <option value="">Choose Airport Code</option>
                 </select>
             </div>
 
             <div class="field">
                 <label style="color: white">Airline</label>
                 <select class="ui selection dropdown" id="airline" name="airline" required>
-                    <option value=""></option>
+                    <option value="">Choose Airline Code</option>
                 </select>
             </div>
             <div class="field">
                 <label style="color: white">Distance</label>
-                <input type="text" name="distance" pattern="[0-9]*" required>
+                <input type="text" name="distance" placeholder="Distance, in KM" pattern="[0-9]*" required>
             </div>
 
-            <button class="ui button" type="submit">PREDICT</button>
+            <button class="ui button" type="submit"
+            style="background-color: powderblue;">PREDICT</button>
         </form>
     </div>
 
