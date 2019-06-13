@@ -10,7 +10,6 @@ app = Flask(__name__, static_url_path='/static/')
 def form():
     return render_template('index.html')
 
-
 @app.route('/predict_flight_delay', methods=['POST', 'GET'])
 def predict_flight_delay():
     
@@ -19,24 +18,29 @@ def predict_flight_delay():
     dest_airport = str(request.form['dest_airport'])
     airline = str(request.form['airline'])
     distance = float(request.form['distance'])
-    sched_arr = float(request.form['sched_arr'])
-    sched_dep = float(request.form['sched_dep'])
-    date = datetime(request.form['date'])
+    sched_arr = str(request.form['sched_arr'])
+    sched_dep = str(request.form['sched_dep'])
+    date = datetime.strptime(request.form['date'], '%Y-%m-%d')
+    date = date.date()
 
-    # load the model and predict
-    model = joblib.load('gb_model.pkl')
-    prediction = model.predict([[origin_airport, dest_airport, distance, sched_arr, sched_dep, date, airline]])
-    predicted_delay = prediction.round(1)[0]
+    # prepare the data
+    # X_columns = ['SCHEDULED_DEPARTURE','DATE','	SCHEDULED_ARRIVAL','AIRLINE_NAME_Southwest Airlines Co.',
+    # 'AIRLINE_NAME_Delta Air Lines Inc.','AIRLINE_NAME_Spirit Air Lines']
+
+    # # load the model and predict
+    # model = joblib.load('gb_model.pkl')
+    # prediction = model.predict([[origin_airport, dest_airport, distance, sched_arr, sched_dep, date, airline]])
+    # predicted_delay = prediction.round(1)[0]
 
     return render_template('results.html',
-                           origin_airport= str(origin_airport),
-                           dest_airport= str(dest_airport),
-                           airline = str(airline),
-                           distance= float(distance),
-                           sched_arr= float(sched_arr),
-                           sched_dep= float(sched_dep),
-                           date = datetime(date),
-                           predicted_delay="{:,}".format(predicted_delay)
+                           origin_airport= (origin_airport),
+                           dest_airport= (dest_airport),
+                           airline = (airline),
+                           distance= (distance),
+                           sched_arr= (sched_arr),
+                           sched_dep= (sched_dep),
+                           date = (date)#,
+                           #predicted_delay="{:,}".format(predicted_delay)
                            )
 
 
