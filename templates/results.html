@@ -30,8 +30,10 @@
 
     <style type="text/css">
         body {
-            background-color: #FFFFFF;
+            background: url('../static//bg2.jpg') center no-repeat fixed;
+            background-size: cover;
         }
+
 
         .ui.menu .item img.logo {
             margin-right: 1.5em;
@@ -52,38 +54,45 @@
             position: fixed;
             width: 100%;
         }
+
     </style>
 
 </head>
 
 <body>
 
-    <div class="ui fixed inverted menu">
+    <div class="ui fixed inverted menu" style="background-color: #333;">
         <div class="ui container">
-            <a href="index.html" class="header item">
-                <!--<img class="logo" src="assets/images/logo.png">-->
-                Flight Delay Prediction
+            <a href="#" class="header item">
+                DELAY PREDICTION
+            </a>
+
+            <a href="https://github.com/ArwaSheraky/Flight-Delay-Prediction" class="header item">
+                PROJECT REFERENCE
             </a>
         </div>
     </div>
 
+    
     <div class="ui main text container">
-
-        <h1 class="ui header">Predicted Delay</h1>
+            <h1 class="ui header">GIVEN THE FOLLOWING:</h1>
 
         <div class="ui statistics">
             <div class="statistic">
                 <div class="value">{{ date }}</div>
                 <div class="label">Date</div>
             </div>
+
             <div class="statistic">
                 <div class="value">{{ sched_dep }}</div>
                 <div class="label">Scheduled Departure</div>
             </div>
+
             <div class="statistic">
                 <div class="value">{{ sched_arr }}</div>
                 <div class="label">Scheduled Arrival</div>
             </div>
+
             <div class="statistic">
                 <div class="value">{{ origin_airport }}</div>
                 <div class="label">Origin Airport</div>
@@ -93,7 +102,7 @@
                 <div class="value">{{ dest_airport }}</div>
                 <div class="label">Destination Airport</div>
             </div>
-
+            
             <div class="statistic">
                 <div class="value">{{ airline }}</div>
                 <div class="label">Airline</div>
@@ -103,18 +112,15 @@
                 <div class="value">{{ distance }}</div>
                 <div class="label">Distance</div>
             </div>
-
-            <br>
         </div>
         <p></p>
-        <div class="ui center aligned container large statistic">
-            <div class="value">{{ predicted_delay }}</div>
-            <div class="label">Predicted Delay</div>
+        <div class="ui center aligned container large statistic" style="background: rgba(255, 255, 255, 0.5);">
+                <div class="label">Predicted Delay = </div>
+                <div class="value">{{ predicted_delay }}</div>
         </div>
-
     </div>
 
-    <div class="ui inverted vertical footer segment">
+    <div class="ui inverted vertical footer segment" style="background-color: #333;">
         <div class="ui center aligned container">
             <div class="ui horizontal inverted small divided link list">
                 <a class="item" href="#">CEDB 1260 - FINAL PROJECT</a>
@@ -127,7 +133,7 @@
     <script src="{{ url_for('static', filename='dist/components/form.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/components/transition.js') }}"></script>
 
-    
+
 </body>
 
 </html>

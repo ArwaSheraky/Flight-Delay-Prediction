@@ -27,7 +27,7 @@
 
     <style type="text/css">
         body {
-            background: url('../static//aircraft-airline-airplane-175656.jpg') center no-repeat fixed;
+            background: url('../static//bg2.jpg') center no-repeat fixed;
             background-size: cover;
         }
 
@@ -40,34 +40,39 @@
         }
 
         .main_box {
-            background: rgba(0, 0,0, 0.5);
+            background: rgba(0, 0, 0, 0.5);
             margin: 100px auto;
             padding: 40px;
             width: 70%;
             min-width: 300px;
         }
 
-        .button{
+        .button {
             float: right;
-            width: 20%;
-            margin-bottom: 30px
+            width: 30%;
         }
+
     </style>
 
 </head>
 
 <body>
-    <div class="ui fixed inverted menu">
+    <div class="ui fixed inverted menu" style="background-color: #333;">
         <div class="ui container">
-            <a href="#" class="header item"">
-                Flight Delay Prediction
+            <a href="#" class="header item">
+                DELAY PREDICTION
+            </a>
+
+            <a href="https://github.com/ArwaSheraky/Flight-Delay-Prediction" class="header item">
+                PROJECT REFERENCE
             </a>
         </div>
     </div>
 
     <div class="main_box">
         <center>
-            <h1 class="ui header" style="color: white">Predict The Expected Delay of your Flight!</h1>
+            <h1 class="ui header" style="color: powderblue">
+                PREDICT THE EXPECTED DELAY <br> OF YOUR FLIGHT !</h1>
         </center>
 
         <form class="ui form" action="/predict_flight_delay" method="post">
@@ -108,16 +113,16 @@
                 </select>
             </div>
             <div class="field">
-                <label style="color: white">Distance</label>
-                <input type="text" name="distance" placeholder="Distance, in KM" pattern="[0-9]*" required>
+                <label style="color: white">Distance between the Airports</label>
+                <input type="text" name="distance" placeholder="Distance" pattern="[0-9]*" required>
             </div>
 
-            <button class="ui button" type="submit"
-            style="background-color: powderblue;">PREDICT</button>
+            <button class="ui button" type="submit" style="background-color: powderblue;">PREDICT</button>
+            <br>
         </form>
     </div>
 
-    <div class="ui inverted vertical footer segment">
+    <div class="ui inverted vertical footer segment" style="background-color: #333">
         <div class="ui center aligned container">
             <div class="ui horizontal inverted small divided link list">
                 <a class="item" href="#">CEDB 1260 - FINAL PROJECT</a>
@@ -125,7 +130,7 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='dist/components/form.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/components/transition.js') }}"></script>
 
