@@ -109,7 +109,7 @@
             <div class="field">
                 <label style="color: white">Airline</label>
                 <select class="ui selection dropdown" id="airline" name="airline" required>
-                    <option value="">Choose Airline Code</option>
+                    <option value="">Choose Airline</option>
                 </select>
             </div>
             <div class="field">
@@ -164,7 +164,10 @@
             dest_airport_select.append('<option value=' + Airports[a] + '>' + Airports[a] + '</option>');
         }
 
-        Airlines = ['UA', 'AA', 'US', 'F9', 'B6', 'OO', 'AS', 'NK', 'WN', 'DL', 'EV', 'HA', 'MQ', 'VX']
+        Airlines = ['United Air Lines Inc.','American Airlines Inc.','US Airways Inc.','Frontier Airlines Inc.',
+        'JetBlue Airways','Skywest Airlines Inc.','Alaska Airlines Inc.','Spirit Air Lines','Southwest Airlines Co.',
+        'Delta Air Lines Inc.','Atlantic Southeast Airlines','Hawaiian Airlines Inc.',
+        'American Eagle Airlines Inc.','Virgin America']
 
         for (i = 0; i < Airlines.length; i++) {
             var airline_select = $('#airline');
