@@ -3,6 +3,7 @@ from sklearn.externals import joblib
 import os
 from datetime import datetime
 import pandas as pd
+import _pickle as cPickle
 
 app = Flask(__name__, static_url_path='/static/')
 
@@ -61,9 +62,15 @@ def predict_flight_delay():
     else:
         DEST_STATE_NY = 0
 
+    model_values = [new_sched_arr, new_date, new_sched_dep,Southwest_Airlines_Co, Delta_Air_Lines_Inc, Spirit_Air_Lines,
+                    MONTH_6, Alaska_Airlines_Inc, MONTH_2, JetBlue_Airways, ORIGIN_AC_ORD,DEST_STATE_NY,DESTINATION_AC_LGA,
+                    ORIGIN_STATE_IL,ORIGIN_AC_DFW, ORIGIN_AC_SEA]
+
     # load the model and predict
-    model = joblib.load('model/gb_model.pkl')
-    prediction = model.predict([[new_sched_arr, new_date, new_sched_dep,Southwest_Airlines_Co, Delta_Air_Lines_Inc, Spirit_Air_Lines, MONTH_6, Alaska_Airlines_Inc, MONTH_2, JetBlue_Airways, ORIGIN_AC_ORD,DEST_STATE_NY,DESTINATION_AC_LGA, ORIGIN_STATE_IL,ORIGIN_AC_DFW, ORIGIN_AC_SEA]])
+    with open('model/gbm.pkl', 'rb') as fid:
+        gb_model = cPickle.load(fid)
+        
+    prediction = gb_model.predict([model_values])
     predicted_delay = prediction.round(2)[0]
 
     return render_template('results.html',
