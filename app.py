@@ -181,6 +181,11 @@ def get_origin_AC_columns(airport_code):
         DFW = 0
         SEA = 1
 
+    else:
+        ORD = 0
+        DFW = 0
+        SEA = 0
+
     return ORD, DFW, SEA
 
 if __name__ == '__main__':
