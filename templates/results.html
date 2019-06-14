@@ -55,6 +55,11 @@
             width: 100%;
         }
 
+        #pred_val {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+        }
+
     </style>
 
 </head>
@@ -63,7 +68,7 @@
 
     <div class="ui fixed inverted menu" style="background-color: #333;">
         <div class="ui container">
-            <a href="#" class="header item">
+            <a href="index.html" class="header item">
                 DELAY PREDICTION
             </a>
 
@@ -110,12 +115,12 @@
 
             <div class="statistic">
                 <div class="value">{{ distance }}</div>
-                <div class="label">Distance</div>
+                <div class="label">Distance (Miles)</div>
             </div>
         </div>
         <p></p>
-        <div class="ui center aligned container large statistic" style="background: rgba(255, 255, 255, 0.5);">
-                <div class="label">Predicted Delay = </div>
+        <div class="ui center aligned container large statistic" id="pred_val">
+                <div class="label" >Predicted Delay = </div>
                 <div class="value">{{ predicted_delay }} min.</div>
         </div>
     </div>
